@@ -1,1 +1,35 @@
-<p>signup works!</p>
+<div class="form-container">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-card">
+    <h2>User Sign up</h2>
+
+    <div class="form-group">
+      <label for="name">User name</label>
+      <input formControlName="name" id="name" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="companyName">Company Name</label>
+      <input formControlName="companyName" id="companyName" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input formControlName="email" id="email" type="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        formControlName="password"
+        id="password"
+        type="password"
+        autocomplete=""
+      />
+    </div>
+    <div class="form-footer">
+      <p>
+        Already have an account?
+        <a routerLink="/signin">Sign in </a>
+      </p>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

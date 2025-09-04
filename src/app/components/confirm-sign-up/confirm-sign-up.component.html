@@ -1,0 +1,14 @@
+<div class="form-container">
+  <form
+    [formGroup]="confirmSignUpForm"
+    (ngSubmit)="onSubmit()"
+    class="form-card"
+  >
+    <h2>Verify your email</h2>
+    <div class="form-group">
+      <label for="confirmedCode">confirmedCode</label>
+      <input formControlName="confirmedCode" id="confirmedCode" type="text" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

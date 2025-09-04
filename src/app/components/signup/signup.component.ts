@@ -32,22 +32,32 @@ export class SignupComponent {
   async onSubmit() {
     if (this.signUpForm.valid) {
       console.log('Form Data:', this.signUpForm.value);
-
       const { email, companyName, name, password } = this.signUpForm.value;
-      const res = await signUp({
-        username: email,
-        password: password,
-        options: {
-          userAttributes: {
-            preferred_username: name,
-            'custom:companyName': companyName,
-          },
-        },
-      });
-
-      console.log(res);
+      this.createNewUser(email, password, name, companyName);
     } else {
       console.log('Form is invalid');
     }
+  }
+  async createNewUser(
+    email: string,
+    password: string,
+    name: string,
+    companyName: string,
+  ) {
+    const { nextStep } = await signUp({
+      username: email,
+      password: password,
+      options: {
+        userAttributes: {
+          preferred_username: name,
+          'custom:companyName': companyName,
+        },
+      },
+    });
+    if (nextStep.signUpStep == 'CONFIRM_SIGN_UP') {
+      this.router.navigate(['/confirm-signup'], { state: { email: email } });
+    }
+
+    //console.log(res);
   }
 }

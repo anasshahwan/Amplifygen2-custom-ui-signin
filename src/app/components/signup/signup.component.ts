@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { signUp } from 'aws-amplify/auth';
 @Component({
   selector: 'app-signup',
   imports: [ReactiveFormsModule, RouterLink],
@@ -16,7 +17,10 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class SignupComponent {
   signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+  ) {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
       companyName: ['', Validators.required],
@@ -25,9 +29,23 @@ export class SignupComponent {
     });
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     if (this.signUpForm.valid) {
       console.log('Form Data:', this.signUpForm.value);
+
+      const { email, companyName, name, password } = this.signUpForm.value;
+      const res = await signUp({
+        username: email,
+        password: password,
+        options: {
+          userAttributes: {
+            preferred_username: name,
+            'custom:companyName': companyName,
+          },
+        },
+      });
+
+      console.log(res);
     } else {
       console.log('Form is invalid');
     }

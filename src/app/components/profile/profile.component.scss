@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  height: 75vh;
+}
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 350px;
+  width: 499px;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: bold;
+}

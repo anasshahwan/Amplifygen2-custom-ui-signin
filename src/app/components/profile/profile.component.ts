@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
+import { Router } from '@angular/router';
+import { fetchUserAttributes, getCurrentUser, signOut } from 'aws-amplify/auth';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +9,7 @@ import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
+  constructor(private router: Router) {}
   user: any = { email: '', name: '', companyName: '' };
 
   async ngOnInit() {
@@ -16,5 +18,9 @@ export class ProfileComponent {
     this.user.email = res.email;
     this.user.name = res.preferred_username;
     this.user.companyName = res['custom:companyName'];
+  }
+  async signUserOut() {
+    await signOut();
+    this.router.navigate(['/signin']);
   }
 }

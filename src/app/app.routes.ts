@@ -4,6 +4,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmSignUpComponent } from './components/confirm-sign-up/confirm-sign-up.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { authGuard } from './auth.guard';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'confirm-signup', component: ConfirmSignUpComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'reset-password', component: ResetPasswordComponent },
 ];

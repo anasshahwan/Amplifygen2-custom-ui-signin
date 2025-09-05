@@ -2,7 +2,15 @@
   <div class="card">
     <h2>Welcome {{ user.email }}</h2>
 
-    <p><span class="label">Name:</span> {{ user.name }}</p>
+    @if (!isEditing) {
+      <p><span class="label">Name:</span> {{ user.name }}</p>
+      <button (click)="edit()">Edit Name</button>
+    } @else {
+      <p>
+        <span class="label">Name:</span> <input [(ngModel)]="newUserName" />
+      </p>
+      <button (click)="saveUserAttributes()">Update Name</button>
+    }
     <p><span class="label">Email:</span> {{ user.email }}</p>
     <p><span class="label">ComapyName:</span> {{ user.companyName }}</p>
     <button (click)="signUserOut()">Sign Out</button>

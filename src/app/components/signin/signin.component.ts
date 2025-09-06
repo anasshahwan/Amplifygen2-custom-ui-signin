@@ -47,4 +47,7 @@ export class SigninComponent {
   async signInWithGoogle() {
     await signInWithRedirect({ provider: 'Google' });
   }
+  async signInWithFacebook() {
+    await signInWithRedirect({ provider: 'Facebook' });
+  }
 }

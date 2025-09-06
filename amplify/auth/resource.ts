@@ -17,6 +17,15 @@ export const auth = defineAuth({
           preferredUsername: 'name',
         },
       },
+      facebook: {
+        clientId: secret('FACEBOOK_CLIENT_ID'),
+        clientSecret: secret('FACEBOOK_CLIENT_SECRET'),
+        scopes: ['email'],
+        attributeMapping: {
+          email: 'email',
+          preferredUsername: 'name',
+        },
+      },
       callbackUrls: [
         'http://localhost:4200/profile',
         'https://yoursite.com/profile',

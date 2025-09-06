@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { signIn } from 'aws-amplify/auth';
+import { signIn, signInWithRedirect } from 'aws-amplify/auth';
 @Component({
   selector: 'app-signin',
   imports: [ReactiveFormsModule, RouterLink],
@@ -42,5 +42,9 @@ export class SigninComponent {
     if (nextStep.signInStep == 'DONE') {
       this.router.navigate(['/profile']);
     }
+  }
+
+  async signInWithGoogle() {
+    await signInWithRedirect({ provider: 'Google' });
   }
 }
